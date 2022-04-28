@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  go-server:
+    container_name: go-server
+    build: .
+    expose:
+      - ${FILES_SERVER_PORT}
+    volumes:
+      - "$HOME/tmp:/var/root"
+    command:
+      - "-token"
+      - "0"
+      - "/var/root"
+  nginx:
+    build:
+      context: ./
+      dockerfile: nginx/Dockerfile
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+      - "go-server:file-server"
+    environment:
+      - FILES_SERVER_PORT=${FILES_SERVER_PORT}
