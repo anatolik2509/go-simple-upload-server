@@ -3,6 +3,8 @@ services:
   go-server:
     container_name: go-server
     build: .
+    env_file:
+      - ./.env
     expose:
       - ${FILES_SERVER_PORT}
     volumes:
@@ -16,10 +18,10 @@ services:
       context: ./
       dockerfile: nginx/Dockerfile
     container_name: nginx
+    env_file:
+      - ./.env
     ports:
       - "80:80"
       - "443:443"
     links:
       - "go-server:file-server"
-    environment:
-      - FILES_SERVER_PORT=${FILES_SERVER_PORT}
