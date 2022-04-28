@@ -5,19 +5,14 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-    
-env:
-  PORT: 25478
 
 jobs:
 
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: yandex
 
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag go-file-server
-    - name: Run docker image
-      run: docker run -v $HOME/tmp:/var/root -p ${{ env.PORT }}:25478 go-file-server -token ${{ secrets.TOKEN }} /var/root
+      run: docker-compose up
