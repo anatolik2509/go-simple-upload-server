@@ -1,6 +1,12 @@
 # go-simple-upload-server
 Simple HTTP server to save artifacts
 
+# DevOps team:
+1. Anatoly Antonov
+2. Valeev Karim
+3. Aidashev Kamil
+4. Ananieva Elena
+
 # Usage
 
 ## Start Server
